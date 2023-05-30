@@ -2,6 +2,7 @@
 import uuid # random id generator
 from streamlit_option_menu import option_menu
 from settings import *
+import dlib
 #import base64
 
 ## Disable Warnings
