@@ -2,7 +2,7 @@
 import uuid # random id generator
 from streamlit_option_menu import option_menu
 from settings import *
-import base64
+#import base64
 
 ## Disable Warnings
 st.set_option('deprecation.showPyplotGlobalUse', False)
