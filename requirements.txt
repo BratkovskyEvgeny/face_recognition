@@ -1,10 +1,10 @@
 pip==23.1.2
+cmake
 wheel
 numpy
 pandas
 plotly
 opencv-contrib-python
-cmake
 dlib
 face_recognition
 streamlit
