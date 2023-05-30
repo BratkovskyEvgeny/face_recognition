@@ -132,8 +132,8 @@ def attendance(id, name):
         df_attendace = pd.read_csv(f_p)
        
        # df_attendace = df_attendace.append(df_attendace_temp)  
-        
-        df_attendace =df_attendace.loc[len(df_attendace)] 
+        df_attendace = pd.concat([df_attendace,  df_attendace_temp],ignore_index=True)
+        #df_attendace =df_attendace.loc[len(df_attendace)] 
         #df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
         df_attendace.to_csv(f_p, index=False)
         # st.write(df_attendace)
