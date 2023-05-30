@@ -3,4 +3,15 @@ channels:
   - conda-forge
 dependencies:
   - streamlit >= 0.73
+  - pip==23.1.2
+  - cmake
+  - wheel
+  - numpy
+  - pandas
+  - plotly
+  - opencv-contrib-python
   - dlib
+  - face_recognition
+  - streamlit
+  - streamlit_option_menu
+
