@@ -1,3 +1,4 @@
+pip==23.1.2
 wheel
 numpy
 pandas
@@ -8,4 +9,4 @@ dlib
 face_recognition
 streamlit
 streamlit_option_menu
-import base64
+base64
