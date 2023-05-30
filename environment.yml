@@ -13,5 +13,5 @@ dependencies:
   - dlib
   - face_recognition
   - streamlit
-  - streamlit_option_menu
+  
 
