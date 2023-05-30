@@ -7,7 +7,7 @@ import cv2
 import face_recognition
 import numpy as np
 from PIL import Image
-########################################################################################################################
+
 # The Root Directory of the project
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -39,22 +39,22 @@ VISITOR_HISTORY = os.path.join(ROOT_DIR, "visitor_history")
 
 if not os.path.exists(VISITOR_HISTORY):
     os.mkdir(VISITOR_HISTORY)
-########################################################################################################################
-## Defining Parameters
+
+# Defining Parameters
 
 COLOR_DARK  = (0, 0, 153)
 COLOR_WHITE = (255, 255, 255)
 COLS_INFO   = ['Name']
 COLS_ENCODE = [f'v{i}' for i in range(128)]
 
-## Database
+# Database
 data_path       = VISITOR_DB
 file_db         = 'visitors_db.csv'         ## To store user information
 file_history    = 'visitors_history.csv'    ## To store visitor history information
 
 ## Image formats allowed
 allowed_image_type = ['.png', 'jpg', '.jpeg']
-################################################### Defining Function ##############################################
+
 def initialize_data():
     if os.path.exists(os.path.join(data_path, file_db)):
         # st.info('Database Found!')
@@ -67,7 +67,7 @@ def initialize_data():
 
     return df
 
-#################################################################
+
 def add_data_db(df_visitor_details):
     try:
         df_all = pd.read_csv(os.path.join(data_path, file_db))
@@ -77,20 +77,20 @@ def add_data_db(df_visitor_details):
             df_all.drop_duplicates(keep='first', inplace=True)
             df_all.reset_index(inplace=True, drop=True)
             df_all.to_csv(os.path.join(data_path, file_db), index=False)
-            st.success('Details Added Successfully!')
+            st.success('Details added successfully!')
         else:
             df_visitor_details.to_csv(os.path.join(data_path, file_db), index=False)
-            st.success('Initiated Data Successfully!')
+            st.success('Initiated data successfully!')
 
     except Exception as e:
         st.error(e)
 
-#################################################################
+
 # convert opencv BRG to regular RGB mode
 def BGR_to_RGB(image_in_array):
     return cv2.cvtColor(image_in_array, cv2.COLOR_BGR2RGB)
 
-#################################################################
+
 def findEncodings(images):
     encode_list = []
 
@@ -101,7 +101,7 @@ def findEncodings(images):
 
     return encode_list
 
-#################################################################
+
 def face_distance_to_conf(face_distance, face_match_threshold=0.6):
     if face_distance > face_match_threshold:
         range = (1.0 - face_match_threshold)
@@ -113,7 +113,7 @@ def face_distance_to_conf(face_distance, face_match_threshold=0.6):
         return linear_val + ((1.0 - linear_val) * np.power(
             (linear_val - 0.5) * 2, 0.2))
 
-#################################################################
+
 def attendance(id, name):
     f_p = os.path.join(VISITOR_HISTORY, file_history)
     # st.write(f_p)
@@ -134,7 +134,7 @@ def attendance(id, name):
         df_attendace.to_csv(f_p, index=False)
         # st.write(df_attendace)
 
-#################################################################
+
 def view_attendace():
     f_p = os.path.join(VISITOR_HISTORY, file_history)
     # st.write(f_p)
@@ -172,4 +172,3 @@ def view_attendace():
             st.image(Image.open(selected_img_path))
 
 
-########################################################################################################################
