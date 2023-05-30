@@ -130,7 +130,7 @@ def attendance(id, name):
         # st.write(df_attendace_temp)
     else:
         df_attendace = pd.read_csv(f_p)
-        df_attendace = df_attendace.append(df_attendace_temp)
+        df_attendace = df_attendace.concat(df_attendace_temp)
         df_attendace.to_csv(f_p, index=False)
         # st.write(df_attendace)
 
