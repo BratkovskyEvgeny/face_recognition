@@ -12,21 +12,28 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 ## Defining Static Data
 
 import base64
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    st.markdown(
-    f"""
+
+@st.cache(allow_output_mutation=True)
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_png_as_page_bg(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = '''
     <style>
-    .stApp {{
-        background-image: url(data:image/{"jpg"};base64,{encoded_string.decode()});
-        background-size: cover
-    }}
+    body {
+    background-image: url("data:image/png;base64,%s");
+    background-size: cover;
+    }
     </style>
-    """,
-    unsafe_allow_html=True
-    )
-add_bg_from_local('face3.jpg')    
+    ''' % bin_str
+    
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    return
+
+set_png_as_page_bg('fr.png')  
 #@st.cache_data
 #def get_img_as_base64(file):
    # with open(file, "rb") as f:
